@@ -1,0 +1,25 @@
+
+<div>
+
+        {% url 'index' as index_url %}
+
+        <span>{% if request.path == index_url %}Acasa{% else %}<a href="{% url 'index' %}">Acasa</a>{% endif %}</span>
+        {% url 'evenimente' as evenimente_url %}
+        <span>{% if request.path == evenimente_url %}Evenimente{% else %}<a href="{% url 'evenimente' %}">Evenimente</a>{% endif %}</span>
+        {% url 'contact' as contact_url %}
+        <span>{% if request.path == contact_url %}Contact{% else %}<a href="{% url 'contact' %}">Contact</a>{% endif %}</span>
+        {% url 'about' as about_url %}
+        <span>{% if request.path == about_url %}Despre{% else %}<a href="{% url 'about' %}">Despre</a>{% endif %}</span>
+        <span style="float:right">
+            {% if user.is_authenticated %}
+                {% url 'profile' as profile_url %}
+                <span>Salut {% if request.path == profile_url %}{{user.username}}{% else %}<a href="{{ profile_url }}">{{user.username}}</a>{% endif %}!</span>
+                <!-- <span>Salut <a href="{url 'profile' %}">{{user.username}}</a>!</span> -->
+                <span><a href="{% url 'logout' %}">Logout</a></span>
+            {% else %}
+                <span><a href="{% url 'login' %}">Login</a></span>
+                <span><a href="{% url 'register' %}">Register</a></span>
+            {% endif %}
+        </span>
+
+</div>
